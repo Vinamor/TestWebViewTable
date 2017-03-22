@@ -172,24 +172,21 @@ class WebViewTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    @IBAction func segmentControlChanged(_ sender: Any) {
+    @IBAction func segmentControlChanged(_ sender: UISegmentedControl) {
         
         switch(segmentControl.selectedSegmentIndex) {
         case 0: if(PostsArray.count == 0) {
             self.downloadJSONWithURL()
-        } else {
             self.tableView.reloadData()
-            }
-        case 1: if(PostsArray2.count == 0) {
+        }         case 1: if(PostsArray2.count == 0) {
             self.downloadJSONWithURL2()
-        } else {
             self.tableView.reloadData()
-            }
+        }
         default:
             break
         }
+        self.tableView.reloadData()
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -256,14 +253,14 @@ class WebViewTableViewController: UITableViewController {
 //            }
         
         case 1:
-            let post = PostsArray2[indexPath.row]
-            cell.contentTitleLabel.text = post?.title
-            cell.contentDescriptionLabel.text = post?.description
-            cell.authorLabel.text = post?.author
-            cell.dateOfPublishing.text = post?.publishingDate
+            let post2 = PostsArray2[indexPath.row]
+            cell.contentTitleLabel.text = post2?.title
+            cell.contentDescriptionLabel.text = post2?.description
+            cell.authorLabel.text = post2?.author
+            cell.dateOfPublishing.text = post2?.publishingDate
             
             
-            if let imageURL = NSURL(string: (post?.imageStr)!) {
+            if let imageURL = NSURL(string: (post2?.imageStr)!) {
                 let data = NSData(contentsOf: (imageURL as URL))
                 cell.contentImageView.image = UIImage(data: data as! Data)
                 cell.contentImageView.layer.cornerRadius = 0.5 * cell.contentImageView.frame.size.width
@@ -319,17 +316,25 @@ class WebViewTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "showDetail" {
-            let postDetailViewController = segue.destination as! PostViewController
-            let postDetailViewController2 = segue.destination as! PostViewController
             
-            if let selectedPostCell = sender as? NewsTableViewCell {
-                let indexPath = tableView.indexPath(for: selectedPostCell)!
-                let selectedPost = PostsArray[indexPath.row]
-                let selectedPost2 = PostsArray2[indexPath.row]
-                postDetailViewController.post = selectedPost
-                postDetailViewController2.post = selectedPost2
-            } else {
-                fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            if let postDetailViewController = segue.destination as? PostViewController {
+                if let selectedPostCell = sender as? NewsTableViewCell {
+                    let indexPath = tableView.indexPath(for: selectedPostCell)!
+                    let selectedPost = PostsArray[indexPath.row]
+                    postDetailViewController.post = selectedPost
+                } else {
+                    fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+                }
+            }
+            
+            if let postDetailViewController2 = segue.destination as? PostViewController {
+                if let selectedPostCell = sender as? NewsTableViewCell {
+                    let indexPath2 = tableView.indexPath(for: selectedPostCell)!
+                    let selectedPost2 = PostsArray2[indexPath2.row]
+                    postDetailViewController2.post = selectedPost2
+                } else {
+                    fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+                }
             }
         }
     }

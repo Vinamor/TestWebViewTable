@@ -16,7 +16,8 @@ class PostViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myWebView.delegate = self
+        
+        self.myWebView.delegate = self
         
         if let url = URL(string: (post?.myUrl)!) {
             let request = URLRequest(url: url)
@@ -34,9 +35,6 @@ class PostViewController: UIViewController, UIWebViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let myURL = myWebView.request
         post = Post(myUrl: String(describing:myURL))
-
     }
-
-
 }
 

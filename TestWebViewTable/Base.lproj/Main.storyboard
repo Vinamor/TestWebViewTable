@@ -65,7 +65,7 @@
                                     <outlet property="contentImageView" destination="J7S-8h-WbQ" id="UwO-Ib-bxr"/>
                                     <outlet property="contentTitleLabel" destination="IFW-BW-snv" id="5Df-4d-HeB"/>
                                     <outlet property="dateOfPublishing" destination="IYB-kM-cnS" id="ZXN-eN-zUC"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showDetail" id="tmk-Cn-IDf"/>
+                                    <segue destination="BYZ-38-t0r" kind="showDetail" identifier="showDetail" action="showViewController:sender:" id="faf-tS-qAF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -109,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37N-oG-CPa">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
@@ -123,14 +123,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495.2" y="141.67916041979012"/>
+            <point key="canvasLocation" x="1447" y="142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z7K-1a-YvW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="soh-Y9-7sY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aGk-iz-SXC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aGk-iz-SXC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -163,6 +163,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tmk-Cn-IDf"/>
+        <segue reference="faf-tS-qAF"/>
     </inferredMetricsTieBreakers>
 </document>
