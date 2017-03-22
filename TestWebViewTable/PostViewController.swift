@@ -8,25 +8,21 @@
 
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var myWebView: UIWebView!
     
     var post: Post?
     
-//    @IBAction func cancelThePost(_ sender: UIBarButtonItem) {
-//        dismiss(animated: true, completion: nil)
-//        
-//    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        myWebView.delegate = self
         
-        if let post = post, let _ = post.author, let _ = post.title, let _ = post.description, let myUrl = post.myUrl, let _ = post.imageStr, let _ = post.publishingDate {
-            let url = NSURL(string: myUrl)
-            let requestObj = NSURLRequest(url: url as! URL)
-            myWebView.loadRequest(requestObj as URLRequest)
+        if let url = URL(string: (post?.myUrl)!) {
+            let request = URLRequest(url: url)
+            myWebView.loadRequest(request)
         }
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
